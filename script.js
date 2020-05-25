@@ -36,7 +36,9 @@ const getStream = () =>  {
         ideal: 1080,
         max: 1440
       },
-      facingMode: 'environment'
+      facingMode: { 
+          exact: "environment" 
+      }
     };
   
     getUserMedia(constraints, (stream) => {
