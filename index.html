@@ -8,7 +8,10 @@
 <body>
     <div class="container">
         <div class="mb">
-            <video autoplay class="video"></video>
+            <div id="wrapper">
+                <div id="delimiter"></div>
+                <video autoplay class="video"></video>
+            </div>
             <br/>
             <img class="photo">
             <hr/>
@@ -18,6 +21,13 @@
     <script src="script.js"></script>
 </body>
     <style>
+        #wrapper{
+            margin: auto;
+            border: 1px dotted black;
+            width: 100%;
+            height: 240px;
+        }
+
         .container{
             padding: 5px;
             margin: auto;
@@ -26,21 +36,27 @@
             height: 600px;
         }
 
+        #delimiter{
+            margin: 25px auto;
+            position: relative;
+            border: 1px solid red;
+            z-index: 10;
+            width: 280px;
+            height: 180px;
+        }
+
         .mb{
             margin: auto;
             text-align: center;
         }
 
         .video{
-            margin: auto;
-            border: 1px dotted black;
             width: 100%;
             height: 240px;
         }
 
         .photo{
             margin: auto;
-            border: 1px dotted black;
             width: 100%;
             height: 240px;
         }

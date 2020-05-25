@@ -20,7 +20,7 @@ const getUserMedia = (options, successCallback, failureCallback) => {
 const getStream = () =>  {
     if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
       !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
-      alert('User Media API not supported.');
+      console.log('User Media API not supported.');
       return;
     }
     
@@ -53,18 +53,18 @@ const getStream = () =>  {
       }
       theStream = stream;
     }, (err) => {
-      alert('Error: ' + err);
+      console.log('Error: ' + err);
     });
   }
   
 const takePhoto = () => {
     if (!('ImageCapture' in window)) {
-      alert('ImageCapture is not available');
+      console.log('ImageCapture is not available');
       return;
     }
     
     if (!theStream) {
-      alert('Grab the video stream first!');
+      console.log('Grab the video stream first!');
       return;
     }
     
@@ -75,6 +75,6 @@ const takePhoto = () => {
         let theImageTag = document.querySelector('.photo');
         theImageTag.src = URL.createObjectURL(blob);
       })
-      .catch(err => alert('Error: ' + err));
+      .catch(err => console.log('Error: ' + err));
 }
 
