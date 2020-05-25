@@ -3,9 +3,11 @@
 
 window.onload = () => {
     getStream();
+
+    document.querySelector("#capture").onclick = () => { takePhoto(); }
 };
 
-let stream;
+let theStream;
 
 const getUserMedia = (options, successCallback, failureCallback) => {
     let api = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -41,7 +43,7 @@ const getStream = () =>  {
     });
   }
   
-  function takePhoto() {
+const takePhoto = () => {
     if (!('ImageCapture' in window)) {
       alert('ImageCapture is not available');
       return;
@@ -60,4 +62,5 @@ const getStream = () =>  {
         theImageTag.src = URL.createObjectURL(blob);
       })
       .catch(err => alert('Error: ' + err));
-    }
+}
+
