@@ -1,3 +1,3 @@
 # camera_test_js
 
-https://rawcdn.githack.com/IsmaFuentes/camera_test_js/3570026e2f8fe59cce3a3a73f35b63be0aabcd01/index.html
+https://rawcdn.githack.com/IsmaFuentes/camera_test_js/def433e5ef2b08833170d48b2bbafa49d44acc31/index.html
