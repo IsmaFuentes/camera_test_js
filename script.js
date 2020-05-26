@@ -26,7 +26,6 @@ const getStream = () =>  {
     
     const constraints = {
       video: {
-        /*
         width: { 
             min: 1280,
             ideal: 1920,
@@ -36,9 +35,7 @@ const getStream = () =>  {
             min: 720,
             ideal: 1080,
             max: 1440
-          },*/
-          width: 1280,
-          height: 720,
+          },
           facingMode: { 
               exact: 'environment'
           }
@@ -46,7 +43,7 @@ const getStream = () =>  {
     };
   
     getUserMedia(constraints, (stream) => {
-      var mediaControl = document.querySelector('video');
+      var mediaControl = document.querySelector('#video');
       if ('srcObject' in mediaControl) {
         mediaControl.srcObject = stream;
       } else if (navigator.mozGetUserMedia) {
