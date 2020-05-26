@@ -3,7 +3,6 @@ window.onload = () => {
   document.querySelector('button').onclick = () => { takePhoto() };
 }
 
-// Put variables in global scope to make them available to the browser console.
 const video = document.querySelector('video');
 const canvas = window.canvas = document.querySelector('canvas');
 
@@ -18,9 +17,10 @@ const takePhoto = () => {
 
 const constraints = {
   audio: false,
-  video: true,
-  facingMode: { 
-    exact: 'environment'
+  video: {
+    facingMode: { 
+      exact: 'environment'
+    }
   }
 };
 
