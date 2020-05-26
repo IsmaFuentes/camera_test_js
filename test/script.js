@@ -6,15 +6,18 @@ window.onload = () => {
 const video = document.querySelector('video');
 const canvas = window.canvas = document.querySelector('canvas');
 
-canvas.width = 480;
-canvas.height = 360;
+//canvas.width = 480;
+//canvas.height = 360;
 
 const takePhoto = () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
+  let delimiter = document.querySelector("#delimiter");
+  let dWidth = delimiter.clientWidth;
+  let dHeigth = delimiter.clientHeight;
 
-  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  canvas.getContext('2d').drawImage(video, 0, 0, dWidth, dHeigth);
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
