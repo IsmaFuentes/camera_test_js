@@ -13,11 +13,15 @@ const takePhoto = () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
+  let wrapper = document.querySelector("#wrapper");
+  let wWidth = wrapper.clientWidth;
+  let wHeigth = wrapper.clientHeight;
+
   let delimiter = document.querySelector("#delimiter");
   let dWidth = delimiter.clientWidth;
   let dHeigth = delimiter.clientHeight;
 
-  canvas.getContext('2d').drawImage(video, 0, 0, dWidth, dHeigth);
+  canvas.getContext('2d').drawImage(video, wWidth - dWidth, wHeigth - dHeigth, dWidth, dHeigth);
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
