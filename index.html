@@ -10,8 +10,7 @@
         <div class="mb">
             <div id="wrapper">
                 <div id="delimiter"></div>
-                <video playsinline autoplay id="video"></video>
-                <canvas id="canvas"></canvas>
+                <video autoplay id="video"></video>
             </div>
             <br/>
             <img class="photo">
@@ -23,7 +22,7 @@
 </body>
     <style>
         #wrapper{
-            margin: auto;
+            margin: 0 auto 0 auto;
             border: 1px dotted black;
             width: 100%;
             height: 240px;
@@ -31,10 +30,14 @@
         
         video {
             background: #222;
-            margin: 0 0 20px 0;
-            --width: 100%;
-            width: var(--width);
-            height: calc(var(--width) * 0.75);
+            right: 0; 
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto; 
+            background-size: cover;
+            overflow: hidden;
         }
   
 
