@@ -21,7 +21,7 @@ const constraints = {
     facingMode: { 
       exact: 'environment'
     },
-    aspectRatio: { exact: 1.7777777778 }
+    aspectRatio: { exact: 1.72 }
   }
 };
 
