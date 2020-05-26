@@ -9,4 +9,4 @@ Test JavaScript GetUserMedia API
 
 
 
-- test: https://rawcdn.githack.com/IsmaFuentes/camera_test_js/5e1c3e29fec6f73fa4fba96fc09712495bf72c38/test/index.html
+- test: https://rawcdn.githack.com/IsmaFuentes/camera_test_js/19273ef361c638665f57acc140debcc4b02ef0a4/test/index.html
