@@ -21,7 +21,7 @@ const takePhoto = () => {
   let dWidth = delimiter.clientWidth;
   let dHeigth = delimiter.clientHeight;
 
-  canvas.getContext('2d').drawImage(video, wWidth - dWidth, wHeigth - dHeigth, dWidth, dHeigth);
+  canvas.getContext('2d').drawImage(video, wWidth - dWidth, wHeigth - dHeigth, 0, 0, dWidth, dHeigth);
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
