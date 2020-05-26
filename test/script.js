@@ -28,8 +28,8 @@ const takePhoto = () => {
   console.log((wWidth - dWidth), (wHeigth - dHeigth));
   */
 
-  canvas.getContext('2d').drawImage(video, 10, 10, 100, 100, 0, 0, wWidth, wHeigth);
-  //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  //canvas.getContext('2d').drawImage(video, 10, 10, 100, 100, 0, 0, wWidth, wHeigth);
+  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
 const constraints = {
