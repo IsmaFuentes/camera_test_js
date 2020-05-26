@@ -10,8 +10,8 @@ const canvas = window.canvas = document.querySelector('canvas');
 //canvas.height = 360;
 
 const takePhoto = () => {
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+  //canvas.width = video.videoWidth;
+  //canvas.height = video.videoHeight;
 
   let wrapper = document.querySelector("#wrapper");
   let wWidth = wrapper.clientWidth;
@@ -21,7 +21,14 @@ const takePhoto = () => {
   let dWidth = delimiter.clientWidth;
   let dHeigth = delimiter.clientHeight;
 
-  canvas.getContext('2d').drawImage(video, (wWidth - dWidth), (wHeigth - dHeigth), canvas.width, canvas.height,0, 0, dWidth, dHeigth);
+  /*
+  let img = new Image();
+  img.src = "C:\\Users\\Ruta\\Desktop\\images\\source.jpg";
+
+  console.log((wWidth - dWidth), (wHeigth - dHeigth));
+  */
+
+  canvas.getContext('2d').drawImage(video, (wWidth - dWidth), (wHeigth - dHeigth), dWidth, dHeigth, 0, 0, wWidth, wHeigth);
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
