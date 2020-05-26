@@ -20,7 +20,8 @@ const constraints = {
   video: {
     facingMode: { 
       exact: 'environment'
-    }
+    },
+    aspectRatio: { exact: 1.7777777778 }
   }
 };
 
