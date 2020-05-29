@@ -1,14 +1,12 @@
 window.onload = () => {
-  navigator.mediaDevices.getUserMedia(constraints).then(
-    handleSuccess
-  ).catch(
+  navigator.mediaDevices.getUserMedia(constraints).then(getMedia).catch(
     error => console.log(error)
   );
 }
 
-
 const video = document.querySelector('video');
 const img = document.querySelector("#myImage");
+const slider = document.querySelector("#slider");
 
 const takePhoto = () => {
   const imageCapture = window.imageCapture;
@@ -34,11 +32,11 @@ const constraints = {
   }
 };
 
-const handleSuccess = (stream) => {
+const getMedia = (stream) => {
   const mediaStreamStrack = stream.getVideoTracks()[0];
 
   mediaStreamStrack.applyConstraints({
-    advanced: [{ zoom: 20 }]
+    advanced: [{ zoom: slider.value }]
   }).catch(
     err => console.log(err)
   );
