@@ -21,21 +21,30 @@ const takePhoto = () => {
   }
 }
 
+const facingMode = {
+  user: 'user', // front camera
+  env: 'environment' // back camera
+};
+
 const constraints = {
   audio: false,
   video: {
     facingMode: { 
-      exact: 'environment'
+      exact: facingMode.env
     },
-    aspectRatio: { exact: 0.70 }
-  }
+    aspectRatio: { 
+      exact: 0.70 
+    }
+  },
+  zoom: true
 };
 
 const getMedia = (stream) => {
   let mediaStreamStrack = stream.getVideoTracks()[0];
   let capabilities = mediaStreamStrack.getCapabilities();
+  console.log(capabilities);
 
-  if('zoom' in capabilities){
+  if(capabilities.zoom){
     mediaStreamStrack.applyConstraints({
       advanced: [{ zoom: 20 }]
     }).catch(
@@ -43,6 +52,14 @@ const getMedia = (stream) => {
     );
   }
 
+  if(capabilities.resizeMode){
+    mediaStreamStrack.applyConstraints({
+      resizeMode: 1
+    }).catch(
+      err => console.log(err)
+    );
+  }
+  
   let imageCapture = new ImageCapture(mediaStreamStrack);
 
   video.srcObject = stream;
