@@ -36,22 +36,19 @@ const constraints = {
 };
 
 const handleSuccess = (stream) => {
-  // basic config
-  window.stream = stream;
-  video.srcObject = stream;
   const mediaStreamStrack = stream.getVideoTracks()[0];
   const imageCapture = new ImageCapture(mediaStreamStrack);
-  window.imageCapture = imageCapture;
 
-  // slider
-  const capabilities = mediaStreamStrack.getCapabilities();
-  const settings = mediaStreamStrack.getSettings();
-  if(capabilities.zoom){
-    slider.min = capabilities.zoom.min;
-    slider.max = capabilities.zoom.max;
-    slider.step = capabilities.zoom.step;
-    slider.value = settings.zoom;
-  }
+  mediaStreamStrack.applyConstraints({
+    advanced: [{ zoom: slider.value }]
+  }).catch(
+    err => console.log(err)
+  );
+
+  video.srcObject = stream;
+  window.stream = stream;
+  window.imageCapture = imageCapture;
+  window.mediaStreamStrack = mediaStreamStrack;
 }
 
 document.querySelector('button').addEventListener("click", takePhoto);
