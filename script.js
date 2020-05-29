@@ -40,12 +40,12 @@ const handleSuccess = (stream) => {
   const imageCapture = new ImageCapture(mediaStreamStrack);
 
   mediaStreamStrack.applyConstraints({
-    advanced: [{ zoom: slider.value }]
+    advanced: [{ zoom: 20}]
   }).catch(
     err => console.log(err)
   );
 
-  video.srcObject = stream;
+  video.srcObject = mediaStreamStrack;
   window.stream = stream;
   window.imageCapture = imageCapture;
   window.mediaStreamStrack = mediaStreamStrack;
