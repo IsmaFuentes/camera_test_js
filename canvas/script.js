@@ -4,23 +4,25 @@ window.onload = () => {
 }
 
 const video = document.querySelector('video');
-const canvas = window.canvas = document.querySelector('canvas');
-
-canvas.width = 480;
-canvas.height = 360;
+//const canvas = window.canvas = document.querySelector('canvas');
+//canvas.width = 480;
+//canvas.height = 360;
 
 const takePhoto = () => {
   //canvas.width = video.videoWidth;
   //canvas.height = video.videoHeight;
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
   const imageCapture = window.imageCapture;
-  imageCapture.takePhoto().then(blob => {
-    canvas.width = imageCapture.width;
-    canvas.height = imageCapture.height;
-    canvas.getContext('2d').drawImage(blob, 0,0);
-  }).catch(
-    err => console.log(err)
-  );
+  const img = document.querySelector("#myImage");
+
+  if(imageCapture){
+    imageCapture.takePhoto().then(blob => {
+      img.src = URL.createObjectURL(blob);
+      img.onload = () => { URL.revokeObjectURL(this.src) }
+    }).catch(
+      err => console.log(err)
+    );
+  }
 }
 
 const constraints = {
@@ -34,12 +36,12 @@ const constraints = {
 };
 
 const handleSuccess = (stream) => {
+  window.stream = stream;
+  video.srcObject = stream;
+
   const mediaStreamStrack = stream.getVideoTracks()[0];
   const imageCapture = new imageCapture(mediaStreamStrack);
-
   window.imageCapture = imageCapture;
-  //window.stream = stream;
-  //video.srcObject = stream;
 }
 
 const handleError = (error) => {
