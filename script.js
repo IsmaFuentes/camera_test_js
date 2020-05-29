@@ -30,13 +30,12 @@ const constraints = {
   audio: false,
   video: {
     facingMode: { 
-      exact: facingMode.env
+      exact: facingMode.user
     },
     aspectRatio: { 
       exact: 0.70 
     }
   },
-  zoom: true
 };
 
 const getMedia = (stream) => {
@@ -44,20 +43,21 @@ const getMedia = (stream) => {
   let capabilities = mediaStreamStrack.getCapabilities();
   console.log(capabilities);
 
+  /*
   if(capabilities.zoom){
     mediaStreamStrack.applyConstraints({
       advanced: [{ zoom: 20 }]
     }).catch(
       err => console.log(err)
     );
-  }
-
+  }*/
+  
   if(capabilities.resizeMode){
     mediaStreamStrack.applyConstraints({
-      resizeMode: 1
+      advanced: [{ resizeMode: 1 }]
     }).catch(
       err => console.log(err)
-    );
+    );  
   }
   
   let imageCapture = new ImageCapture(mediaStreamStrack);
