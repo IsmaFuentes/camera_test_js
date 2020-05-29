@@ -45,7 +45,7 @@ const handleSuccess = (stream) => {
     err => console.log(err)
   );
 
-  video.srcObject = mediaStreamStrack;
+  video.srcObject = stream;
   window.stream = stream;
   window.imageCapture = imageCapture;
   window.mediaStreamStrack = mediaStreamStrack;
