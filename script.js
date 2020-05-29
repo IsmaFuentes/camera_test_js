@@ -1,79 +1,38 @@
-
-// camera test
-
 window.onload = () => {
-    getStream();
+  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(error => console.log(error));
+  document.querySelector('button').onclick = () => { takePhoto() };
+}
 
-    document.querySelector("#capture").onclick = () => { takePhoto(); }
+const video = document.querySelector('video');
+const img = document.querySelector("#myImage");
+
+const takePhoto = () => {
+  const imageCapture = window.imageCapture;
+  if(imageCapture){
+    imageCapture.takePhoto().then(blob => {
+      img.src = URL.createObjectURL(blob);
+      img.onload = () => { URL.revokeObjectURL(this.src) }
+    }).catch(
+      err => console.log(err)
+    );
+  }
+}
+
+const constraints = {
+  audio: false,
+  video: {
+    facingMode: { 
+      exact: 'environment'
+    },
+    aspectRatio: { exact: 0.70 }
+  }
 };
 
-let theStream;
-
-const getUserMedia = (options, successCallback, failureCallback) => {
-    let api = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-    if(api){
-        return api.bind(navigator)(options, successCallback, failureCallback);
-    }
-}
-
-const getStream = () =>  {
-  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
-    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
-    console.log('User Media API not supported.');
-    return;
-  }
-    
-  const constraints = {
-    video: {
-      width: { 
-          min: 1280,
-          ideal: 1920,
-          max: 2560,
-        },
-        height: {
-          min: 720,
-          ideal: 1080,
-          max: 1440
-        },
-        facingMode: { 
-          exact: 'environment'
-        }
-    }
-  };
-    
-  getUserMedia(constraints, (stream) => {
-    let mediaControl = document.querySelector('#video');
-    if ('srcObject' in mediaControl) {
-      mediaControl.srcObject = stream;
-    } else if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
-      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    }
-      theStream = stream;
-    }, (err) => { console.log('Error: ' + err);
-  });
-}
-  
-const takePhoto = () => {
-  if (!('ImageCapture' in window)) {
-    console.log('ImageCapture is not available');
-    return;
-  }
-    
-  if (!theStream) {
-    console.log('Grab the video stream first!');
-    return;
-  }
-    
-  let theImageCapturer = new ImageCapture(theStream.getVideoTracks()[0]);
-  
-  theImageCapturer.takePhoto()
-  .then(blob => {
-    let theImageTag = document.querySelector('.photo');
-    theImageTag.src = URL.createObjectURL(blob);
-  })
-  .catch(err => console.log('Error: ' + err));
+const handleSuccess = (stream) => {
+  window.stream = stream;
+  video.srcObject = stream;
+  const mediaStreamStrack = stream.getVideoTracks()[0];
+  const imageCapture = new ImageCapture(mediaStreamStrack);
+  window.imageCapture = imageCapture;
 }
 
