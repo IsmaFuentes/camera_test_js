@@ -38,7 +38,7 @@ const getMedia = (stream) => {
   mediaStreamStrack.applyConstraints({
     advanced: [{ zoom: slider.value }]
   }).catch(
-    err => console.log(err)
+    err => alert(err)
   );
 
   const imageCapture = new ImageCapture(mediaStreamStrack);
