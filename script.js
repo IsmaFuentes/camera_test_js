@@ -36,13 +36,14 @@ const constraints = {
 
 const handleSuccess = (stream) => {
   const mediaStreamStrack = stream.getVideoTracks()[0];
-  const imageCapture = new ImageCapture(mediaStreamStrack);
 
   mediaStreamStrack.applyConstraints({
     advanced: [{ zoom: 20 }]
   }).catch(
     err => console.log(err)
   );
+
+  const imageCapture = new ImageCapture(mediaStreamStrack);
 
   video.srcObject = stream;
   window.stream = stream;
