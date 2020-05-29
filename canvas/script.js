@@ -14,13 +14,12 @@ const takePhoto = () => {
   //canvas.height = video.videoHeight;
   //canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
   const imageCapture = window.imageCapture;
-
   if(imageCapture){
     imageCapture.takePhoto().then(blob => {
       img.src = URL.createObjectURL(blob);
       img.onload = () => { URL.revokeObjectURL(this.src) }
     }).catch(
-      err => alert(err)
+      err => console.log(err)
     );
   }
 }
@@ -41,6 +40,7 @@ const handleSuccess = (stream) => {
 
   const mediaStreamStrack = stream.getVideoTracks()[0];
   const imageCapture = new imageCapture(mediaStreamStrack);
+  alert(imageCapture);
   window.imageCapture = imageCapture;
 }
 
