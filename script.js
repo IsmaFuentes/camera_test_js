@@ -9,7 +9,6 @@ window.onload = () => {
 
 const video = document.querySelector('video');
 const img = document.querySelector("#myImage");
-const slider = document.querySelector("#mySlider");
 
 const takePhoto = () => {
   const imageCapture = window.imageCapture;
@@ -40,7 +39,7 @@ const handleSuccess = (stream) => {
   const imageCapture = new ImageCapture(mediaStreamStrack);
 
   mediaStreamStrack.applyConstraints({
-    advanced: [{ zoom: 20}]
+    advanced: [{ zoom: 20 }]
   }).catch(
     err => console.log(err)
   );
