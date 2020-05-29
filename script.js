@@ -6,10 +6,9 @@ window.onload = () => {
 
 const video = document.querySelector('video');
 const img = document.querySelector("#myImage");
-const slider = document.querySelector("#slider");
 
 const takePhoto = () => {
-  const imageCapture = window.imageCapture;
+  let imageCapture = window.imageCapture;
   if(imageCapture){
     imageCapture.takePhoto().then(blob => {
       img.src = URL.createObjectURL(blob);
@@ -33,15 +32,18 @@ const constraints = {
 };
 
 const getMedia = (stream) => {
-  const mediaStreamStrack = stream.getVideoTracks()[0];
+  let mediaStreamStrack = stream.getVideoTracks()[0];
+  let capabilities = mediaStreamStrack.getCapabilities();
 
-  mediaStreamStrack.applyConstraints({
-    advanced: [{ zoom: slider.value }]
-  }).catch(
-    err => alert(err)
-  );
+  if('zoom' in capabilities){
+    mediaStreamStrack.applyConstraints({
+      advanced: [{ zoom: 20 }]
+    }).catch(
+      err => console.log(err)
+    );
+  }
 
-  const imageCapture = new ImageCapture(mediaStreamStrack);
+  let imageCapture = new ImageCapture(mediaStreamStrack);
 
   video.srcObject = stream;
   window.stream = stream;
