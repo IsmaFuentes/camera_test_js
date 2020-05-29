@@ -1,5 +1,5 @@
 window.onload = () => {
-  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(error => console.log(error));
   document.querySelector('button').onclick = () => { takePhoto() };
 }
 
@@ -39,11 +39,7 @@ const handleSuccess = (stream) => {
   video.srcObject = stream;
 
   const mediaStreamStrack = stream.getVideoTracks()[0];
-  const imageCapture = new imageCapture(mediaStreamStrack);
-  alert(imageCapture);
+  const imageCapture = new ImageCapture(mediaStreamStrack);
   window.imageCapture = imageCapture;
 }
 
-const handleError = (error) => {
-  console.log('Get user media error: ', error.message, error.name);
-}
